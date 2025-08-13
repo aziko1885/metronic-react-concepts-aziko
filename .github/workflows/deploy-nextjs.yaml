@@ -1,4 +1,4 @@
-name: Deploy Next.js Starter Kit
+name: Deploy Next.js Production
 
 on:
   push:
