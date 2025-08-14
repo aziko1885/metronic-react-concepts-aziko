@@ -2,7 +2,7 @@ name: Deploy Vite to Production
 
 on:
   push:
-    branches: [main]
+    branches: [nonexistent-branch]
   workflow_dispatch:
 
 jobs:
@@ -42,6 +42,6 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT || 22 }}
         source: "typescript/vite/dist/*"
-        target: /var/www/metronic/metronic-html-concepts/typescript/vite
+        target: /var/www/metronic/metronic-react-concepts/typescript/vite
         strip_components: 3
         overwrite: true
