@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { mockContacts } from '@/app/crm/mock/contacts';

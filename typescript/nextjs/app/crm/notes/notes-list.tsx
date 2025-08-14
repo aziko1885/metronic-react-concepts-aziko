@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { useMemo, useState, Key } from 'react';
@@ -496,11 +497,13 @@ export function NoteList({ filter }: NoteListProps) {
   };
 
   const formatDate = (date: Date) => {
+    // Use a consistent timezone to avoid hydration issues
     return new Intl.DateTimeFormat('en-US', {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
+      timeZone: 'UTC'
     }).format(date);
   };
 

@@ -10,7 +10,6 @@ import {
   DollarSign, 
   Clock,
   CheckCircle,
-  AlertCircle,
   XCircle,
   MoreHorizontal,
   Edit,
@@ -933,7 +932,7 @@ export function RecentDeals() {
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline">
-                    <AlertCircle className="size-3.5" />
+                    <Target className="size-3.5" />
                     Priority
                     {selectedPriorities.length > 0 && (
                       <Badge size="sm" variant="outline">

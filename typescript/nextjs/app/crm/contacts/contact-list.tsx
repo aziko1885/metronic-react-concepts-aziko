@@ -1,6 +1,8 @@
+'use client';
+
 import { useMemo, useState } from 'react';
-import { mockContacts } from '@/crm/mock/contacts'; 
-import { Contact } from '@/crm/types/contact';
+import { mockContacts } from '@/app/crm/mock/contacts'; 
+import { Contact } from '@/app/crm/types/contact';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,7 +24,6 @@ import { DataGrid } from '@/components/ui/data-grid';
 import { DataGridTable } from '@/components/ui/data-grid-table';
 import { DataGridPagination } from '@/components/ui/data-grid-pagination';
 import { Input } from '@/components/ui/input'; 
-import { Link } from 'react-router-dom';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -41,6 +42,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import Link from 'next/link';
 
 interface ContactListProps {
   filter?: 'all' | 'today' | 'week' | 'completed';
@@ -98,7 +100,7 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
             )}
           </Avatar>
           <Link
-            to={`#`}
+            href={`#`}
             className="font-medium text-foreground hover:text-primary"
           >
              {row.original.name}
@@ -112,7 +114,7 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
       header: 'Email',
       size: 200,
       cell: ({ row }) => (
-        <Link to={`/crm/contacts/${row.original.id}`} className="hover:text-primary">
+        <Link href="#" className="hover:text-primary">
           {row.original.email || '-'}
         </Link>
       ),
@@ -133,50 +135,61 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
       accessorKey: 'socialLinks',
       header: 'Social Links',
       size: 200,
-      cell: ({ row }) => (
-        <div className="flex flex-wrap gap-2">
-          {row.original.socialLinks?.linkedin && (
-            <Link to="#" className="text-primary hover:underline">
-              LinkedIn
-            </Link>
-          )}
-          {row.original.socialLinks?.twitter && (
-            <Link to="#" className="text-primary hover:underline">
-              Twitter
-            </Link>
-          )}
-          {row.original.socialLinks?.github && (
-            <Link to="#" className="text-primary hover:underline">
-              GitHub
-            </Link>
-          )}
-          {row.original.socialLinks?.instagram && (
-            <Link to="#" className="text-primary hover:underline">
-              Instagram
-            </Link>
-          )}
-          {row.original.socialLinks?.facebook && (
-            <Link to="#" className="text-primary hover:underline">
-              Facebook
-            </Link>
-          )}
-          {row.original.socialLinks?.youtube && (
-            <Link to="#" className="text-primary hover:underline">
-              YouTube
-            </Link>
-          )}
-          {row.original.socialLinks?.medium && (
-            <Link to="#" className="text-primary hover:underline">
-              Medium
-            </Link>
-          )}
-          {row.original.socialLinks?.stackoverflow && (
-            <Link to="#" className="text-primary hover:underline">
-              StackOverflow
-            </Link>
-          )}
-        </div>
-      ),
+      cell: ({ row }) => {
+        const socialLinks = row.original.socialLinks || {};
+        const hasAnySocialLinks = Object.values(socialLinks).some(link => !!link);
+        
+        return (
+          <div className="flex flex-wrap gap-2">
+            {hasAnySocialLinks ? (
+              <>
+                {socialLinks.linkedin && (
+                  <Link href="#" className="text-primary hover:underline">
+                    LinkedIn
+                  </Link>
+                )}
+                {socialLinks.twitter && (
+                  <Link href="#" className="text-primary hover:underline">
+                    Twitter
+                  </Link>
+                )}
+                {socialLinks.github && (
+                  <Link href="#" className="text-primary hover:underline">
+                    GitHub
+                  </Link>
+                )}
+                {socialLinks.instagram && (
+                  <Link href="#" className="text-primary hover:underline">
+                    Instagram
+                  </Link>
+                )}
+                {socialLinks.facebook && (
+                  <Link href="#" className="text-primary hover:underline">
+                    Facebook
+                  </Link>
+                )}
+                {socialLinks.youtube && (
+                  <Link href="#" className="text-primary hover:underline">
+                    YouTube
+                  </Link>
+                )}
+                {socialLinks.medium && (
+                  <Link href="#" className="text-primary hover:underline">
+                    Medium
+                  </Link>
+                )}
+                {socialLinks.stackoverflow && (
+                  <Link href="#" className="text-primary hover:underline">
+                    StackOverflow
+                  </Link>
+                )}
+              </>
+            ) : (
+              <span className="text-muted-foreground">-</span>
+            )}
+          </div>
+        );
+      },
       enableSorting: false,
     },
     {
@@ -201,7 +214,7 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
         const company = row.original.company || ''; 
         return (
           <Link
-            to={`#`}
+            href={`#`}
             className="group flex items-center gap-1.5 cursor-pointer"
           >
             <Avatar className="flex items-center justify-center size-5 border border-border rounded-full"> 
@@ -235,7 +248,6 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
       size: 150,
       cell: ({ row }) => {
         const date = new Date(row.original.updatedAt);
-        
         return (
           <span>
             {formatDate(date)}
@@ -295,11 +307,13 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
   }, [searchQuery, filter, selectedPositions, selectedCompanies]);
 
   const formatDate = (date: Date) => {
+    // Use a consistent timezone to avoid hydration issues
     return new Intl.DateTimeFormat('en-US', {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
+      timeZone: 'UTC'
     }).format(date);
   };
 
@@ -350,8 +364,8 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
                 />
                 {searchQuery.length > 0 && (
                   <Button
-                    mode="icon"
                     variant="ghost"
+                    size="icon"
                     className="absolute end-1.5 top-1/2 -translate-y-1/2 h-6 w-6"
                     onClick={() => setSearchQuery('')}
                   >

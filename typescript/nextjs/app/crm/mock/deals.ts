@@ -1,5 +1,5 @@
-import { Deal } from '@/crm/types/deal';
 import { toAbsoluteUrl } from '@/lib/helpers';
+import { Deal } from '@/app/crm/types/deal';
 
 export const mockDeals: Deal[] = [
   // Active (today) tab deals
@@ -92,7 +92,7 @@ export const mockDeals: Deal[] = [
     contactIds: ['4'],
     userName: 'Michael Chen',
     avatar: toAbsoluteUrl('/media/avatars/300-18.png'),
-    dueAt: new Date('2024-07-12'), 
+    dueAt: new Date('2024-07-12'),
     createdAt: new Date('2025-07-02'),
     updatedAt: new Date('2024-07-10'),
     comments: 4,
@@ -112,7 +112,7 @@ export const mockDeals: Deal[] = [
     contactIds: ['5'],
     userName: 'Sarah Wilson',
     avatar: toAbsoluteUrl('/media/avatars/300-23.png'),
-    dueAt: new Date('2024-07-14'), 
+    dueAt: new Date('2024-07-14'),
     createdAt: new Date('2025-07-06'),
     updatedAt: new Date('2024-07-10'),
     comments: 3,
@@ -284,5 +284,5 @@ export const mockDeals: Deal[] = [
     paymentType: 'bank_transfer',
     contractNumber: 'INV-2025-004',
     discount: 3,
-  }
+  },
 ];

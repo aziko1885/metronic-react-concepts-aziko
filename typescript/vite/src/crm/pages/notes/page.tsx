@@ -5,7 +5,7 @@ import { CalendarCheck, CalendarDays, CalendarRange } from 'lucide-react';
 import { NoteList } from './notes-list';
 import { NotesFavorite } from './notes-favorite';
 
-export default function NotesPage() {
+export function NotesPage() {
   return (
     <>
       <PageHeader />

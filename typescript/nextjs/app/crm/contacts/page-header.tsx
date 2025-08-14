@@ -1,14 +1,17 @@
+'use client';
+
 import { ContentHeader } from "@/components/layouts/crm/components/content-header";
 import { 
 	Info, 	
+	Plus, 
 	FileCheck2,  
 	History, 
 	BarChart2,
 	CalendarClock, 
 	Download,
 	Share,
-	FileText, 
-	Home
+	FileText,
+	Users
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button"; 
@@ -22,16 +25,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+
+import { NewCompanySheet } from "./new-contact-sheet";
 
 export function PageHeader() {
+	const [companySheetOpen, setCompanySheetOpen] = useState(false);
+
+	const onCompanySheetOpenChange = (open: boolean) => {
+		setCompanySheetOpen(open);
+	};
+
   return (
     <ContentHeader className="space-x-2">
 			<h1 className="inline-flex items-center gap-2.5 text-sm font-semibold">
-				<Home className="size-4 text-primary"/> Dashboard
+				<Users className="size-4 text-primary"/> Contacts
 			</h1>
 
 			<div className="flex items-center gap-2.5">
-				
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button size="sm" variant="outline">
@@ -41,7 +52,7 @@ export function PageHeader() {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end" className="w-[230px]">
 						{/* Notifications Toggle */}
-						<DropdownMenuItem className="justify-between text-muted-foreground">
+						<DropdownMenuItem className="justify-between text-muted-foreground" onClick={(e) => {e.preventDefault()}}>
 							<span>Enable Notifications</span>
 							<Switch defaultChecked size="sm" />
 						</DropdownMenuItem>
@@ -95,6 +106,11 @@ export function PageHeader() {
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
+			 
+				<Button size="sm" onClick={() => setCompanySheetOpen(true)}>
+					<Plus /> New Contact
+				</Button>
+				<NewCompanySheet open={companySheetOpen} onOpenChange={onCompanySheetOpenChange} />
 			</div>
 		</ContentHeader>		
   );

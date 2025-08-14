@@ -1,15 +1,25 @@
+'use client';
+
 import { ContentHeader } from "@/components/layouts/crm/components/content-header";
 import { 
+	Building2, 
 	Info, 	
+	Plus, 
 	FileCheck2,  
 	History, 
 	BarChart2,
 	CalendarClock, 
 	Download,
 	Share,
-	FileText, 
-	Home
+	FileText
 } from "lucide-react";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 import { Button } from "@/components/ui/button"; 
 
@@ -22,16 +32,34 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+
+import { NewCompanySheet } from "./new-company-sheet";
 
 export function PageHeader() {
-  return (
-    <ContentHeader className="space-x-2">
-			<h1 className="inline-flex items-center gap-2.5 text-sm font-semibold">
-				<Home className="size-4 text-primary"/> Dashboard
-			</h1>
+	const [companySheetOpen, setCompanySheetOpen] = useState(false);
 
+	const onCompanySheetOpenChange = (open: boolean) => {
+		setCompanySheetOpen(open);
+	};
+
+  return (
+    <ContentHeader>
+			<h1 className="inline-flex items-center gap-2.5 text-sm font-semibold">
+				<Building2 className="size-4 text-primary"/>
+				Companies
+				<TooltipProvider>
+					<Tooltip>
+						<TooltipTrigger>
+							<Info className="size-3.5 text-muted-foreground"/>
+						</TooltipTrigger>
+						<TooltipContent side="right">
+							Companies records, deals, and contacts are managed in one place.
+						</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
+			</h1>
 			<div className="flex items-center gap-2.5">
-				
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button size="sm" variant="outline">
@@ -41,7 +69,7 @@ export function PageHeader() {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end" className="w-[230px]">
 						{/* Notifications Toggle */}
-						<DropdownMenuItem className="justify-between text-muted-foreground">
+						<DropdownMenuItem className="justify-between text-muted-foreground" onClick={(e) => {e.preventDefault()}}>
 							<span>Enable Notifications</span>
 							<Switch defaultChecked size="sm" />
 						</DropdownMenuItem>
@@ -95,6 +123,11 @@ export function PageHeader() {
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
+			 
+				<Button size="sm" onClick={() => setCompanySheetOpen(true)}>
+					<Plus /> New Company
+				</Button>
+				<NewCompanySheet open={companySheetOpen} onOpenChange={onCompanySheetOpenChange} />
 			</div>
 		</ContentHeader>		
   );
