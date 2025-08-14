@@ -1,6 +1,6 @@
 {
-  "name": "metronic-nextjs",
-  "version": "9.2.4",
+  "name": "metronic-react-concepts",
+  "version": "9.2.5",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -54,7 +54,7 @@
     "embla-carousel-autoplay": "8.6.0",
     "embla-carousel-react": "8.6.0",
     "@headless-tree/core": "^1.2.1",
-    "@headless-tree/react": "^1.2.1",
+    "@headless-tree/react": "^1.2.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",

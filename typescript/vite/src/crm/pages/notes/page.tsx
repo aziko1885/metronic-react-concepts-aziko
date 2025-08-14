@@ -1,11 +1,11 @@
-import { Content } from '../../layout/components/content';
+import { Content } from '@/crm/layout/components/content';
 import { PageHeader } from './page-header';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CalendarCheck, CalendarDays, CalendarRange } from 'lucide-react';
 import { NoteList } from './notes-list';
 import { NotesFavorite } from './notes-favorite';
 
-export function NotesPage() {
+export default function NotesPage() {
   return (
     <>
       <PageHeader />

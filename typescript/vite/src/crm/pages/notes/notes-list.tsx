@@ -138,7 +138,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '2',
+    id: '5',
     title: 'Follow-up Call with Prospect',
     createdBy: 'user2',
     dueAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -154,7 +154,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '3',
+    id: '6',
     title: 'Task: Update CRM Data',
     createdBy: 'user3',
     dueAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
@@ -169,7 +169,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '2',
+    id: '7',
     title: 'Follow-up Call with Prospect',
     createdBy: 'user2',
     dueAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -185,7 +185,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '3',
+    id: '8',
     title: 'Task: Update CRM Data',
     createdBy: 'user3',
     dueAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
@@ -200,7 +200,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '4',
+    id: '9',
     title: 'Reminder: Send Proposal',
     createdBy: 'user1',
     dueAt: new Date(new Date().setHours(16, 0, 0, 0)),
@@ -215,7 +215,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '5',
+    id: '10',
     title: 'Weekly Team Sync',
     createdBy: 'user2',
     dueAt: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
@@ -230,7 +230,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '6',
+    id: '11',
     title: 'Client Feedback Review',
     createdBy: 'user4',
     dueAt: new Date('2025-07-04T15:00:00Z'),
@@ -247,7 +247,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '7',
+    id: '12',
     title: 'Daily Team Standup',
     createdBy: 'user1',
     dueAt: new Date(new Date().setHours(9, 0, 0, 0)),
@@ -262,7 +262,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '8',
+    id: '13',
     title: 'Client Demo Prep',
     createdBy: 'user2',
     dueAt: new Date(new Date().setHours(11, 0, 0, 0)),
@@ -277,7 +277,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '9',
+    id: '14',
     title: 'Code Review Session',
     createdBy: 'user3',
     dueAt: new Date(new Date().setHours(13, 0, 0, 0)),
@@ -292,7 +292,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: false,
   },
   {
-    id: '10',
+    id: '15',
     title: 'Database Backup',
     createdBy: 'user4',
     dueAt: new Date(new Date().setHours(17, 0, 0, 0)),
@@ -307,7 +307,7 @@ const mockNotes: ExtendedNotes[] = [
     isClickable: true,
   },
   {
-    id: '11',
+    id: '16',
     title: 'Weekly Report',
     createdBy: 'user5',
     dueAt: new Date(new Date().setHours(18, 0, 0, 0)),
@@ -325,16 +325,15 @@ const mockNotes: ExtendedNotes[] = [
 
 interface NoteListProps {
   filter?: 'today' | 'week' | 'completed';
-  addFavoriteNote?: (note: ExtendedNotes) => void;
 }
 
-export function NoteList({ filter, addFavoriteNote }: NoteListProps) {
+export function NoteList({ filter }: NoteListProps) {
   const [notes, setNotes] = useState<ExtendedNotes[]>(mockNotes);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
-  const [recentlyCompleted, setRecentlyCompleted] = useState<Set<string>>(new Set());
+  const [recentlyCompleted] = useState<Set<string>>(new Set());
 
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -491,51 +490,6 @@ export function NoteList({ filter, addFavoriteNote }: NoteListProps) {
 
   const handlePriorityChange = (checked: boolean, value: string) => {
     setSelectedPriorities((prev) => (checked ? [...prev, value] : prev.filter((v) => v !== value)));
-  };
-
-  const handleNoteComplete = (noteId: string, checked: boolean) => {
-    setNotes((prevNotes) =>
-      prevNotes.map((note) =>
-        note.id === noteId
-          ? {
-              ...note,
-              status: checked ? 'completed' : 'pending',
-              completedAt: checked ? new Date() : undefined,
-              completedBy: checked ? 'current_user' : undefined,
-              updatedAt: new Date(),
-            }
-          : note
-      )
-    );
-
-    if (checked) {
-      const completedNote = notes.find((note) => note.id === noteId);
-      if (completedNote) {
-        setRecentlyCompleted((prev) => new Set(prev).add(noteId));
-        toast.custom(
-          (t) => (
-            <Alert variant="mono" icon="success" onClose={() => toast.dismiss(t)}>
-              <AlertIcon>
-                <CheckCircle />
-              </AlertIcon>
-              <AlertTitle>Note completed successfully!</AlertTitle>
-            </Alert>
-          ),
-          { duration: 5000, position: 'top-center' }
-        );
-
-        setTimeout(() => {
-          setRecentlyCompleted((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(noteId);
-            return newSet;
-          });
-          if (filter !== 'completed') {
-            setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
-          }
-        }, 2000);
-      }
-    }
   };
 
   const formatDate = (date: Date) => {

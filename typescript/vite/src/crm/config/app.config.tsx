@@ -73,7 +73,7 @@ export const MAIN_NAV: NavConfig = [
     path: '/crm/company',
     pinnable: true,
     pinned: true,
-    id: 'companies'
+    id: 'company'
   },
 
   {

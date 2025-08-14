@@ -83,7 +83,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps) => {
   return null;
 };
 
-export default function LeadAnalytics() {
+export function LeadAnalytics() {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodKey>('5D');
 
   // Get data for selected period

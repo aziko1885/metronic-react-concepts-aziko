@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import { NavConfig } from '@/crm/config/types';
 
 // Define the shape of the layout state
@@ -36,16 +36,21 @@ export function LayoutProvider({ children, sidebarNavItems }: LayoutProviderProp
     return sidebarPinnedNavItems.includes(id);
   };   
 
-  const getSidebarNavItems = () => {
+  // Memoize the processed navigation items to prevent duplicate object creation
+  const processedNavItems = useMemo(() => {
     return sidebarNavItems.map((item) => {
       if (item.pinnable) {
         return {
           ...item,
-          pinned: isSidebarNavItemPinned(item.id)
+          pinned: sidebarPinnedNavItems.includes(item.id)
         };
       }
       return item;
     });
+  }, [sidebarNavItems, sidebarPinnedNavItems]);
+
+  const getSidebarNavItems = () => {
+    return processedNavItems;
   };
 
   return (

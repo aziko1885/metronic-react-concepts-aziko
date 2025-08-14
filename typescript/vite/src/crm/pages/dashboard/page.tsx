@@ -1,11 +1,11 @@
 
 import { Content } from "@/crm/layout/components/content";
 import { PageHeader } from "./page-header";
-import Stats from "./stats";
+import { Stats } from "./stats";
 import { TasksOverview } from "./tasks-overview";
 import { TotalRevenue } from "./total-revenue";
-import DealsOverview from "./deals-overview";
-import LeadAnalytics from "./lead-analytics";
+import { DealsOverview } from "./deals-overview";
+import { LeadAnalytics } from "./lead-analytics";
 import { RecentDeals } from "./recent-deals";
 
 export function Dashboard() {

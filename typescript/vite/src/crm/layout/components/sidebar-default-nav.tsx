@@ -25,6 +25,7 @@ import { Link } from 'react-router';
 import { useLayout } from './layout-context';
 import { cn } from '@/lib/utils';
 import { useLocation } from 'react-router';
+import { useMemo } from 'react';
 
 
 function TasksDropdownMenu({ trigger }: { trigger: React.ReactNode }) {
@@ -84,9 +85,14 @@ function TasksDropdownMenu({ trigger }: { trigger: React.ReactNode }) {
 }
 
 function MoreDropdownMenu({ item }: { item: NavItem }) {
-  const { isSidebarNavItemPinned, unpinSidebarNavItem,pinSidebarNavItem, getSidebarNavItems, sidebarCollapse } = useLayout();
-  const navItems = getSidebarNavItems();
-  const pinnableNavItems = navItems.filter((item) => item.pinnable);
+  const { isSidebarNavItemPinned, unpinSidebarNavItem, pinSidebarNavItem, sidebarCollapse, getSidebarNavItems } = useLayout();
+  
+  // Memoize the pinnable nav items to prevent unnecessary re-computations
+  const pinnableNavItems = useMemo(() => {
+    const navItems = getSidebarNavItems();
+    return navItems.filter((item) => item.pinnable);
+  }, [getSidebarNavItems]);
+
   const handlePin = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
     if (isSidebarNavItemPinned(id)) {
@@ -123,7 +129,11 @@ function MoreDropdownMenu({ item }: { item: NavItem }) {
               {item.icon && <item.icon />}
               <span>{item.title}</span>
             </div>
-            <Pin className={cn('ms-auto', isSidebarNavItemPinned(item.id) ? 'text-primary' : 'text-muted-foreground')}/>
+            {isSidebarNavItemPinned(item.id) ?   (
+              <Pin className={cn('ms-auto text-primary')}/>
+            ) : (
+              <PinOff className={cn('ms-auto text-muted-foreground size-3.5')}/>
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
@@ -229,7 +239,13 @@ function NavItemCollapsed({ item }: { item: NavItem }) {
 export function SidebarDefaultNav() {
   const { pathname } = useLocation();
   const { getSidebarNavItems, sidebarCollapse } = useLayout();
-  const filteredNavItems = getSidebarNavItems().filter((item) => (item.pinnable && item.pinned) || !item.pinnable);
+  
+  // Memoize the filtered nav items to prevent unnecessary re-computations
+  const filteredNavItems = useMemo(() => {
+    const navItems = getSidebarNavItems();
+    return navItems.filter((item) => (item.pinnable && item.pinned) || !item.pinnable);
+  }, [getSidebarNavItems]);
+  
   const matchPath = (path: string) => path === pathname || (path.length > 1 && pathname.startsWith(path));
 
   return (

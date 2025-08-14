@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ScreenLoader } from '@/components/screen-loader';
 const LazyCrmModule = lazy(() => import('@/crm'));
 
@@ -23,6 +23,12 @@ export function ModulesProvider() {
         />
       </Routes>
     );
-  } 
+  } else {
+    return (
+      <Routes>
+        <Route path="*" element={<Navigate to="/crm" replace />} />
+      </Routes>
+    );
+  }
 }
 
