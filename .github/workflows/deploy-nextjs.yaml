@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            cd /var/www/metronic/metronic-html-concepts/typescript/nextjs
+            cd /var/www/metronic/metronic-react-concepts/typescript/nextjs
 
             # Pull latest changes
             git reset --hard && git pull
