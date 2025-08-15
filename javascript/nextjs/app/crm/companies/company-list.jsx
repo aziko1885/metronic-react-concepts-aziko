@@ -68,7 +68,7 @@ export default function CompanyList() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 15,
   });
 
   const [sorting, setSorting] = useState([{ id: 'name', desc: true }]);
@@ -747,7 +747,10 @@ export default function CompanyList() {
         </CardTable>
 
         <CardFooter className="px-4 py-0">
-          <DataGridPagination className="py-1" />
+          <DataGridPagination
+            className="py-1"
+            sizes={[5, 10, 15, 30, 50, 100]}
+          />
         </CardFooter>
       </Card>
     </DataGrid>
