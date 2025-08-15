@@ -2,12 +2,12 @@ name: Deploy Next.js Production
 
 on:
   push:
-    branches: [nonexistent-branch]
+    branches: [main]
   workflow_dispatch:
 
 env:
   NODE_VERSION: 20.x
-  DEPLOY_PORT: 3017
+  DEPLOY_PORT: 3018
   APP_NAME: metronic-html-concepts
   APP_URL: https://keenthemes.com/metronic/concepts/nextjs/
 
