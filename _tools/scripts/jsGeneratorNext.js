@@ -12,7 +12,7 @@ const TEMPLATE_FILE = path.resolve(__dirname, "../nextjs");
 const FILES_TO_COPY = [
     "app",
     "components",
-    "config",
+    // "config",
     // "css",
     "hooks",
     // "i18n",
@@ -23,11 +23,12 @@ const FILES_TO_COPY = [
     "styles",
     // "services",
     // "types",
-    // ".env",
+    ".env",
     // ".env.example",
     // ".env.production",
     ".prettierignore",
     ".prettierrc",
+    "components.json",
     "eslint.config.mjs",
     "postcss.config.mjs",
     "README.md"
