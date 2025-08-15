@@ -27,7 +27,7 @@ export const MAIN_NAV: NavConfig = [
     more: true,
     new: {
       tooltip: 'New Task',
-      path: '/crm/tasks/new',
+      path: '/crm/tasks',
     },
   },
   {

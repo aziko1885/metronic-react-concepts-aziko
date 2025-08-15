@@ -11,6 +11,7 @@ import { Plus, File, StarOff, ChevronRight, Star } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
+  TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useLayout } from './layout-context';
@@ -76,7 +77,7 @@ function CollapsedContent({ items }: { items: RecentItem[] }) {
   return (
     <div className="px-(--sidebar-space-x)">
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild>
 					<Tooltip delayDuration={500}>
 						<TooltipTrigger asChild>
 							<Button variant="ghost" size="icon" className="size-8">
@@ -106,16 +107,18 @@ function CollapsedContent({ items }: { items: RecentItem[] }) {
 								<span>{item.name}</span>
 								<span className="text-muted-foreground">{item.company}</span>
 							</Button>
-							<Tooltip>	
-								<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100" asChild>
-									<Button variant="ghost" className="size-6 hover:bg-input" size="icon">
-										<StarOff className='size-3.5'/>
-									</Button>
-								</TooltipTrigger>
-								<TooltipContent align='start' side='right' sideOffset={15} alignOffset={-2}>
-									Remove favorite
-								</TooltipContent>
-							</Tooltip>
+							<TooltipProvider>
+								<Tooltip>	
+									<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100" asChild>
+										<Button variant="ghost" className="size-6 hover:bg-input" size="icon">
+											<StarOff className='size-3.5'/>
+										</Button>
+									</TooltipTrigger>
+									<TooltipContent align='start' side='right' sideOffset={15} alignOffset={-2}>
+										Remove favorite
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
 						</DropdownMenuItem>
 					))}	
         </DropdownMenuContent>

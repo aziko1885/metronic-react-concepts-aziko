@@ -57,7 +57,7 @@ function DefaultContent({ items }: { items: RecentItem[] }) {
 						</Button>
 
 						<Tooltip delayDuration={800}>	
-							<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100">
+							<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100" asChild>
 								<Button variant="ghost" className="size-6 hover:bg-input" size="icon">
 									<StarOff className='size-3.5'/>
 								</Button>
@@ -77,9 +77,9 @@ function CollapsedContent({ items }: { items: RecentItem[] }) {
   return (
     <div className="px-(--sidebar-space-x)">
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild>
 					<Tooltip delayDuration={500}>
-						<TooltipTrigger>
+						<TooltipTrigger asChild>
 							<Button variant="ghost" size="icon" className="size-8">
 								<Star/>
 							</Button>
@@ -109,7 +109,7 @@ function CollapsedContent({ items }: { items: RecentItem[] }) {
 							</Button>
 							<TooltipProvider>
 								<Tooltip>	
-									<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100">
+									<TooltipTrigger className="rounded-md opacity-0 group-hover:opacity-100" asChild>
 										<Button variant="ghost" className="size-6 hover:bg-input" size="icon">
 											<StarOff className='size-3.5'/>
 										</Button>
@@ -146,7 +146,7 @@ export function SidebarDefaultFavorites() {
 			company: 'Apple',	
 		},
 		{
-			id: 3,
+			id: 4,
 			name: 'Lead added',
 			company: 'OpenAI',	
 		}

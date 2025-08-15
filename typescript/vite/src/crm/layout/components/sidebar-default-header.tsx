@@ -18,7 +18,10 @@ import {
   Plus,
   Crown,
   LogOut,
+  Sun,
+  Moon,
 } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { useLayout } from './layout-context';
 import { cn } from '@/lib/utils';
 
@@ -52,6 +55,7 @@ const mockWorkspaces: Workspace[] = [
 
 export function SidebarDefaultHeader() {
 	const { sidebarCollapse, setSidebarCollapse } = useLayout();
+	const { theme, setTheme } = useTheme();
 		
 	return (
 		<div className="group flex justify-between items-center gap-2.5 border-b border-border h-11 lg:h-(--sidebar-header-height) shrink-0 px-2.5">
@@ -113,6 +117,15 @@ export function SidebarDefaultHeader() {
 							<Building2 className="size-4" />
 							<span>Workspace Settings</span>
 						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+								{theme === 'dark' ? (
+									<Sun className="size-4" />
+								) : (
+									<Moon className="size-4" />
+								)}
+								<span>{theme === 'dark' ? 'Light' : 'Dark'} Mode</span>
+							</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</div>

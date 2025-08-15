@@ -118,8 +118,8 @@ export default function CompanyList() {
               href={`/crm/company`}
               className="group flex items-center gap-1.5 cursor-pointer"
             >
-              <Avatar className="size-5.5 border border-border rounded-full">
-                <AvatarImage src={row.original.logo} alt={row.original.name} />
+              <Avatar className="size-5.5">
+                <AvatarImage src={row.original.logo} alt={row.original.name} className="rounded-none" />
                 <AvatarFallback className="border-0 text-[11px] font-semibold bg-yellow-500 text-white">
                   {row.original.name.charAt(0)}
                 </AvatarFallback>

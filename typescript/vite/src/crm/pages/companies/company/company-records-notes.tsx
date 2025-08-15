@@ -101,17 +101,13 @@ export function CompanyRecordsNotes() {
                   <img 
                     src={note.logo}
                     alt={note.org}
-                    className="size-4.5 object-contain"
-                    onError={(e) => {
-                      const img = e.target as HTMLImageElement;
-                      img.src = '/media/logos/default-logo.svg';
-                    }}
+                    className="size-4.5"
                   />
-                  <Link to="#" className="font-semibold text-xs hover:text-primary">
+                  <Link to="#" className="font-normal text-xs hover:text-primary">
                     {note.org}
                   </Link>
                 </div>
-                <div className="font-bold text-sm mb-1">{note.title}</div>
+                <div className="font-semibold text-sm mb-1">{note.title}</div>
                 <div className="text-xs text-muted-foreground">{note.content}</div>
               </div>
 

@@ -254,7 +254,7 @@ export function SidebarDefaultNav() {
         type="single"
         matchPath={matchPath}
         classNames={{
-          root: 'space-y-0.5',
+          root: 'grow space-y-0.5 shrink-0',
           item: 'group py-0 h-8 [&:has([data-state=open])]:bg-accent justify-between cursor-pointer'
         }}
         collapsible
