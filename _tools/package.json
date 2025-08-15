@@ -1,0 +1,22 @@
+{
+  "name": "automation-tools",
+  "version": "1.0.0",
+  "description": "Automation tools",
+  "scripts": {
+    "jsGeneratorNext": "node scripts/jsGeneratorNext.js",
+    "jsGeneratorVite": "node scripts/jsGeneratorVite.js",
+    "sync-next": "node scripts/syncNext.js"
+  },
+  "devDependencies": {
+    "fs-extra": "^10.0.1",
+    "glob": "^7.2.0",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/plugin-transform-typescript": "^7.23.6",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "tsx-to-jsx": "^0.0.4"
+  }
+}
