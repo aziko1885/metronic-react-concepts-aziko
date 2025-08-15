@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { format } from 'date-fns';
 import { mockContacts } from '@/crm/mock/contacts';
-import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 interface Reply {
   id: string;
@@ -60,7 +60,6 @@ export function CompanyExtendedComments() {
     },
   ]);
   const [input, setInput] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
   const [replyInput, setReplyInput] = useState('');
 
@@ -70,7 +69,6 @@ export function CompanyExtendedComments() {
 
   const handleAdd = () => {
     if (!input.trim()) return;
-    setSubmitting(true);
     setTimeout(() => {
       const newComment: Comment = {
         id: Date.now().toString(),
@@ -82,7 +80,6 @@ export function CompanyExtendedComments() {
       };
       setComments([newComment, ...comments]);
       setInput('');
-      setSubmitting(false);
     }, 300);
   };
 
@@ -111,7 +108,7 @@ export function CompanyExtendedComments() {
         {comments.map((comment) => (
           <div key={comment.id} className="flex gap-2">
             <Avatar className="size-7 mt-0.5">
-              <AvatarImage src={comment.authorAvatar} />
+              <AvatarImage src={toAbsoluteUrl(comment.authorAvatar || '')} />
               <AvatarFallback>{comment.author.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="flex-1 space-y-2">
@@ -163,7 +160,7 @@ export function CompanyExtendedComments() {
                   {comment.replies.map((reply) => (
                     <div key={reply.id} className="flex gap-2">
                       <Avatar className="size-5">
-                        <AvatarImage src={reply.avatar} />
+                        <AvatarImage src={toAbsoluteUrl(reply.avatar || '')} />
                         <AvatarFallback>{reply.author.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div className="flex-1 space-y-1">
@@ -183,7 +180,7 @@ export function CompanyExtendedComments() {
 
       <div className="flex gap-3">
         <Avatar className="size-7">
-          <AvatarImage src={currentUser.avatar} />
+          <AvatarImage src={toAbsoluteUrl(currentUser.avatar || '')} />
           <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
         </Avatar>
         <Input

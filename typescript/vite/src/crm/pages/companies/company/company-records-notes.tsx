@@ -99,7 +99,7 @@ export function CompanyRecordsNotes() {
               <div className='mb-2'>
                 <div className="flex items-center gap-2 mb-2">
                   <img 
-                    src={note.logo}
+                    src={ note.logo}
                     alt={note.org}
                     className="size-4.5"
                   />

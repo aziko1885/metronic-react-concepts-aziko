@@ -60,8 +60,8 @@ export function NotesFavorite({ className }: NotesCardProps) {
             >
               <div className='mb-1'>
                 <div className="flex items-center gap-1.5 mb-1">
-                  <Avatar className="flex items-center justify-center size-5 border border-border rounded-full">
-                    <AvatarImage className='size-4' src={note.logo} alt={note.org} />
+                  <Avatar className="flex items-center justify-center size-5">
+                    <AvatarImage className='size-4 rounded-none' src={note.logo} alt={note.org} />
                     <AvatarFallback className="border-0 text-[11px] font-semibold bg-yellow-500 text-white">
                       {note.title.charAt(0)}
                     </AvatarFallback>

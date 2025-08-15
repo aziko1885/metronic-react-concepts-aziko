@@ -56,7 +56,7 @@ export function CompanyRecordsOverviewActivity() {
             <ul className="flex flex-col gap-2.5">
               <li className="flex items-center gap-1.5 text-sm">
                 <Avatar className="size-6">
-                  <AvatarImage src="/media/avatars/300-1.png" alt="John Doe" />
+                  <AvatarImage src={toAbsoluteUrl('/media/avatars/300-1.png')} alt="John Doe" />
                 </Avatar>
                 <div className="flex items-center gap-1">
                   <Link to="#" className="font-medium hover:text-primary">

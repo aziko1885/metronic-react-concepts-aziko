@@ -59,6 +59,7 @@ import { CONNECTION_STRENGTHS } from '../../mock/connection-strengths';
 import { EMPLOYEE_RANGES } from '../../mock/employee-ranges';
 import { ESTIMATED_ARRS } from '../../mock/estimated-arrs';
 import { Company } from '../../types/company';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 const demoData: Company[] = COMPANIES;
 
@@ -117,7 +118,7 @@ export default function CompanyList() {
               className="group flex items-center gap-1.5 cursor-pointer"
             >
               <Avatar className="size-5.5 rounded-none">
-                <AvatarImage src={row.original.logo} alt={row.original.name} className="rounded-none"/>
+                <AvatarImage src={toAbsoluteUrl(row.original.logo || '')} alt={row.original.name} className="rounded-none"/>
                 <AvatarFallback className="border-0 text-[11px] font-semibold bg-yellow-500 text-white">
                   {row.original.name.charAt(0)}
                 </AvatarFallback>
@@ -185,7 +186,7 @@ export default function CompanyList() {
                     className="group cursor-pointer flex items-center gap-1 px-1 border border-border rounded-full bg-accent/50"
                   >
                     <Avatar className="size-4 my-1">
-                      <AvatarImage src={contact.avatar} alt={contact.name} />
+                      <AvatarImage src={toAbsoluteUrl(contact.avatar)} alt={contact.name} />
                       <AvatarFallback className="border-0 text-[11px] font-semibold bg-green-500 text-white">
                         {contact.name.charAt(0)}
                       </AvatarFallback>
