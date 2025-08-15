@@ -10,6 +10,7 @@ env:
   DEPLOY_PORT: 3018
   APP_NAME: metronic-html-concepts
   APP_URL: https://keenthemes.com/metronic/concepts/nextjs/
+  BASE_PATH: /metronic/concepts/nextjs
 
 jobs:
   deploy:
@@ -32,16 +33,16 @@ jobs:
             # Install dependencies
             npm ci -f || npm i -f
 
-            # Debug: Show contents of existing .env.production file
-            echo "=== Current .env.production Contents ==="
-            if [ -f .env.production ]; then
-              cat .env.production
-            else
-              echo ".env.production file does not exist"
-            fi
+            # Create .env.production file with base path
+            echo "NEXT_PUBLIC_BASE_PATH=${{ env.BASE_PATH }}" > .env.production
+
+            # Debug: Show contents of created .env.production file
+            echo "=== Created .env.production Contents ==="
+            cat .env.production
             echo "========================================"
 
-            # Build application on server
+            # Build application on server with environment variable
+            export NEXT_PUBLIC_BASE_PATH="${{ env.BASE_PATH }}"
             npm run build
 
             # Restart application
