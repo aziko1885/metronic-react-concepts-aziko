@@ -2,7 +2,7 @@ name: Deploy Vite to Production
 
 on:
   push:
-    branches: [nonexistent-branch]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
