@@ -10,6 +10,7 @@ import { OutboundStock } from './pages/outbound-stock/page';
 import { StockPlanner } from './pages/stock-planner/page';
 import ProductList from './pages/product-list/page';
 import { ProductDetailsPage } from './pages/product-details';
+import { CreateProductPage } from './pages/create-product';
 
 export default function StoreInventoryModule() {
   return (
@@ -25,6 +26,7 @@ export default function StoreInventoryModule() {
         <Route path="stock-planner" element={<StockPlanner />} />
         <Route path="product-list" element={<ProductList />} />
         <Route path="product-details" element={<ProductDetailsPage />} />
+        <Route path="create-product" element={<CreateProductPage />} />
       </Route>
     </Routes>
   );
