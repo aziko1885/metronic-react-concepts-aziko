@@ -49,6 +49,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 export function CompanyExtendedDetailsCompany() {
   const [company] = useState<Company>({ ...COMPANIES[0] });
@@ -99,7 +100,7 @@ export function CompanyExtendedDetailsCompany() {
             <div className="col-span-3">
               <div className="flex items-center gap-2">
                 <Avatar className="size-6">
-                  <AvatarImage src={company.logo || ''} alt="company" />
+                  <AvatarImage src={toAbsoluteUrl(company.logo || '')} alt="company" />
                   <AvatarFallback>{company.name[0]}</AvatarFallback>
                 </Avatar>
                 <span className="text-mono">{company.name}</span>
@@ -221,7 +222,7 @@ export function CompanyExtendedDetailsCompany() {
                       className="group cursor-pointer flex items-center gap-1 px-1 border border-border rounded-full bg-accent/50"
                     >
                       <Avatar className="size-4 my-1">
-                        <AvatarImage src={contact.avatar} alt={contact.name} />
+                        <AvatarImage src={toAbsoluteUrl(contact.avatar || '')} alt={contact.name} />
                         <AvatarFallback className="border-0 text-[11px] font-semibold bg-green-500 text-white">
                           {contact.name.charAt(0)}
                         </AvatarFallback>

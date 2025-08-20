@@ -41,6 +41,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 interface ContactListProps {
   filter?: 'all' | 'today' | 'week' | 'completed';
@@ -90,7 +91,7 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
         <div className="flex items-center gap-2">
           <Avatar className="size-6">
             {row.original.avatar ? (
-              <AvatarImage src={row.original.avatar} alt={row.original.name} />
+              <AvatarImage src={toAbsoluteUrl(row.original.avatar)} alt={row.original.name} />
             ) : (
               <AvatarFallback>
                 {row.original.name.split(' ').map(n => n[0]).join('')}
@@ -204,8 +205,8 @@ const ContactList = ({ filter = 'all' }: ContactListProps) => {
             to={`#`}
             className="group flex items-center gap-1.5 cursor-pointer"
           >
-            <Avatar className="flex items-center justify-center size-5 border border-border rounded-full"> 
-              <AvatarImage className='size-4' src={row.original.logo} alt={company || 'Company'} />
+            <Avatar className="flex items-center justify-center size-5"> 
+              <AvatarImage className='size-4 rounded-none' src={toAbsoluteUrl(row.original.logo || '')} alt={company || 'Company'} />
             </Avatar>  
             <div className="group-hover:text-primary">
               {company || '-'}

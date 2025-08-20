@@ -60,6 +60,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 // Mock task data
 const mockTasks: Task[] = [
@@ -603,7 +604,7 @@ export function TaskList({ filter }: TaskListProps) {
                     className="group cursor-pointer flex items-center gap-1 px-1 border border-border rounded-full bg-accent/50"
                   >
                     <Avatar className="size-4 my-1">
-                      <AvatarImage src={contact.avatar} alt={contact.name} />
+                      <AvatarImage src={toAbsoluteUrl(contact.avatar || '')} alt={contact.name} />
                       <AvatarFallback className="border-0 text-[11px] font-semibold bg-green-500 text-white">
                         {contact.name.charAt(0)}
                       </AvatarFallback>

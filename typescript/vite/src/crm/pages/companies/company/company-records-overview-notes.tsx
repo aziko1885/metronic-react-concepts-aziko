@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { toAbsoluteUrl } from '@/lib/helpers';
 
 export function CompanyRecordsOverviewNotes() {
   const [isNotesOpen, setIsNotesOpen] = React.useState(true);
@@ -57,7 +58,7 @@ export function CompanyRecordsOverviewNotes() {
               <li className="flex items-center gap-1.5 text-sm">
                 <Avatar className="size-6">
                   <AvatarImage
-                    src="/media/avatars/300-12.png"
+                    src={toAbsoluteUrl('/media/avatars/300-12.png')}
                     alt="Cody Fisher"
                   />
                 </Avatar>
@@ -100,7 +101,7 @@ export function CompanyRecordsOverviewNotes() {
               <li className="flex items-center gap-1.5 text-sm">
                 <Avatar className="size-6">
                   <AvatarImage
-                    src="/media/avatars/300-5.png"
+                    src={toAbsoluteUrl('/media/avatars/300-5.png')}
                     alt="Sarah Wilson"
                   />
                 </Avatar>
