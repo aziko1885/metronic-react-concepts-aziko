@@ -17,6 +17,7 @@ export default function StoreInventoryModule() {
       <Route element={<DefaultLayout />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dark-sidebar" element={<Dashboard />} />
         <Route path="all-stock" element={<AllStock />} />
         <Route path="current-stock" element={<CurrentStock />} />
         <Route path="inbound-stock" element={<InboundStock />} />

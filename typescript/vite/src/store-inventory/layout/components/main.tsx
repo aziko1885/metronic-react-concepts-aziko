@@ -5,6 +5,7 @@ import { useLayout } from './context';
 import { Footer } from './footer';
 import { Header } from './header';
 import { Sidebar } from './sidebar';
+import { Breadcrumb } from './breadcrumb';
 
 export function Main() {
   const isMobile = useIsMobile();
@@ -47,10 +48,15 @@ export function Main() {
     <>
       {!isMobile && <Sidebar />}
 
-      <div className="wrapper flex grow flex-col">
+      <div className="wrapper flex grow flex-col lg:[&_.container-fluid]:px-7.5">
         <Header />
 
-        <main className="grow pt-5" role="content">
+        <main className="grow pt-2.5 lg:pt-5" role="content">
+           {/* Mega Menu */}
+          {isMobile && (
+            <Breadcrumb />
+          )}
+
           <Outlet />
         </main>
 

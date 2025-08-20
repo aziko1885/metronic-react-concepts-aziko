@@ -25,6 +25,7 @@ import { NotificationsSheet } from './notifications-sheet';
 import { ChatSheet } from './chat-sheet';
 import { AppsDropdownMenu } from './apps-dropdown-menu';
 import { UserDropdownMenu } from './user-dropdown-menu';
+import { SearchBar } from './search-bar';
 
 export function Header() {
   const [isSidebarSheetOpen, setIsSidebarSheetOpen] = useState(false);
@@ -90,6 +91,7 @@ export function Header() {
 
         {/* HeaderTopbar */}
         <div className="flex items-center gap-3">
+          <SearchBar />          
           <NotificationsSheet
             trigger={
               <Button

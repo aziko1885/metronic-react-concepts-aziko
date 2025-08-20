@@ -16,7 +16,7 @@ export function Breadcrumb() {
   }
 
   return (
-    <div className="flex items-center gap-1.25 text-xs lg:text-sm font-medium mb-2.5 lg:mb-0">
+    <div className="flex items-center gap-1.25 text-xs lg:text-sm font-medium mb-3.5 lg:mb-0 px-5 lg:px-0">
       {items.map((item, index) => {
         const last = index === items.length - 1;
         const active = item.path ? isActive(item.path) : false;
@@ -24,7 +24,7 @@ export function Breadcrumb() {
         return (
           <Fragment key={`root-${index}`}>
             <span
-              className={cn(active ? 'text-mono' : 'text-secondary-foreground')}
+              className={cn(active ? 'text-mono' : 'text-muted-foreground')}
               key={`item-${index}`}
             >
               {item.title}

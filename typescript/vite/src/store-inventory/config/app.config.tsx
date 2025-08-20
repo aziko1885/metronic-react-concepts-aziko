@@ -1,8 +1,6 @@
 import {
   LayoutGrid,
   Settings,
-  UserCircle,
-  Users
 } from 'lucide-react';
 import { MenuConfig } from './types';
 
@@ -11,8 +9,8 @@ export const MENU_SIDEBAR: MenuConfig = [
     title: 'Dashboards',
     icon: LayoutGrid,
     children: [
-      { title: 'Dashboard', path: '/store-inventory' },
-      { title: 'Inventory', path: '/store-inventory/dark-sidebar' }
+      { title: 'Dashboard', path: '/store-inventory/dashboard' },
+      { title: 'Dark Sidebar', path: '/store-inventory/dark-sidebar' }
     ],
   },
   { heading: 'Store Analytics' },

@@ -7,7 +7,8 @@ import { DashboardTable } from '../tables/dashboard';
 
 export function Dashboard() {
   return (
-      <div className="grid gap-5 lg:gap-7.5 p-5 lg:p-7.5">
+    <div className="container-fluid">
+      <div className="grid gap-5 lg:gap-7.5">
         <div className="grid xl:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
           <Orders className={''} />
           <Inventory /> 
@@ -24,5 +25,6 @@ export function Dashboard() {
         </div> 
         <DashboardTable />
       </div>
-    );
+    </div>
+  );
 }
