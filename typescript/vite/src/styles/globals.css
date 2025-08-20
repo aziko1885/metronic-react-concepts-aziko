@@ -162,3 +162,6 @@ html {
 
 /* Metronic Configs */
 @import './config.metronic.css';
+
+/* Store Inventory Layout */
+@import './demos/demo1.css';
