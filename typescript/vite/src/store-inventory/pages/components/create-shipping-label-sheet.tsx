@@ -33,16 +33,16 @@ interface Prices {
   [key: string]: string;
 }
 
-interface CreateShippingLabelProps {
+interface CreateShippingLabelSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   data?: IData;
 }
 
-export function CreateShippingLabel({
+export function CreateShippingLabelSheet({
   open,
   onOpenChange,
-}: CreateShippingLabelProps) {   
+}: CreateShippingLabelSheetProps) {   
   
   const prices: Prices = {
     'Subtotal': '$19.00',

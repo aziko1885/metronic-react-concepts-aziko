@@ -13,7 +13,7 @@ import {
 import { ChevronDown, EllipsisVertical, Search, Trash, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import { PerProductStock } from '../components/per-product-stock-sheet';
+import { PerProductStockSheet } from '../components/per-product-stock-sheet';
 import { toAbsoluteUrl } from '@/lib/helpers';
 import { DataGrid } from '@/components/ui/data-grid';
 import { DataGridColumnHeader } from '@/components/ui/data-grid-column-header';
@@ -849,7 +849,7 @@ const StockPlannerTable = ({ mockData: propsMockData }: StockPlannerProps) => {
           </CardFooter>
         </Card>
       </DataGrid>
-      <PerProductStock
+      <PerProductStockSheet
         open={isStockSheetOpen}
         onOpenChange={setIsStockSheetOpen}
       />

@@ -130,7 +130,7 @@ const Orders = ({ className }: IOrdersProps) => {
       },
     ],
     chart: {
-      height: 250,
+      height: 200,
       type: 'area',
       toolbar: {
         show: false,
@@ -262,7 +262,7 @@ const Orders = ({ className }: IOrdersProps) => {
           <Link to="#">See All</Link>
         </Button>
       </CardHeader>
-      <CardContent className="flex flex-col gap-2 px-5 lg:px-7.5 pt-5">
+      <CardContent className="flex flex-col gap-2 p-0 lg:pt-7.5 pt-5">
         <ToggleGroup
           type="single"
           variant="outline"
@@ -270,30 +270,32 @@ const Orders = ({ className }: IOrdersProps) => {
           onValueChange={(value) => {
             if (value) setActivePeriod(value);
           }}
-          className="grid grid-cols-7"
+          className="grid grid-cols-7 mb-6 mx-5 lg:mx-7.5"
         >
           {['1H', '1D', '14D', '1M', '3M', '1Y', 'All'].map((period) => (
-            <ToggleGroupItem key={period} value={period}>
+            <ToggleGroupItem className="h-[28px]" key={period} value={period}>
               {period}
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
-        <div className="flex items-center gap-2.5">
+        
+        <div className="flex items-center gap-2.5 px-5 lg:px-7.5 mb-1.5">
           <span className="text-3xl font-semibold text-mono">$9,395.72</span>
           <Badge size="sm" variant="success" appearance="light">
             +4.7%
           </Badge>
         </div>
+
+        <ApexChart
+          id="my_order_chart"
+          options={options}
+          series={options.series}
+          type="area"
+          max-width="300"
+          height="205"
+          className="ms-2.5"
+        />
       </CardContent>
-      <ApexChart
-        id="my_order_chart"
-        options={options}
-        series={options.series}
-        type="area"
-        max-width="361"
-        height="220"
-        className="px-3"
-      />
     </Card>
   );
 };

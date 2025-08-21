@@ -79,7 +79,7 @@ const Inventory = ({}: InventoryProps) => {
           <div className="bg-destructive h-2 w-full max-w-[15%] rounded-xs"></div>
         </div>
 
-        <div className="flex items-center flex-wrap gap-4 mb-4">
+        <div className="flex items-center flex-wrap gap-4 mb-3.5">
           {items.map((item, index) => renderItem(item, index))}
         </div>
 

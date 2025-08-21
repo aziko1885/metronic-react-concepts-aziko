@@ -34,7 +34,6 @@ import {
 } from '@/components/ui/data-grid-table';
 import { Input } from '@/components/ui/input';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { Dashboard } from '../dashboard/page';
 
 interface IColumnFilterProps<TData, TValue> {
   column: Column<TData, TValue>;

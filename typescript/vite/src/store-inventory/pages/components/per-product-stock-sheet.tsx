@@ -27,16 +27,16 @@ interface Item {
   info: string;
 }
 
-interface PerProductStockProps {
+interface PerProductStockSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   data?: IData;
 }
 
-export function PerProductStock({
+export function PerProductStockSheet({
   open,
   onOpenChange,
-}: PerProductStockProps) {
+}: PerProductStockSheetProps) {
   const [items] = useState<Item[]>([
     { label: 'SKU', info: 'SH-001-BLK-42' },
     { label: 'Category', info: 'Sneakers' },

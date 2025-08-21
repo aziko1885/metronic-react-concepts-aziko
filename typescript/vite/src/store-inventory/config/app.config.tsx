@@ -1,6 +1,7 @@
 import {
+  Boxes,
   LayoutGrid,
-  Settings,
+  Package,
 } from 'lucide-react';
 import { MenuConfig } from './types';
 
@@ -16,17 +17,45 @@ export const MENU_SIDEBAR: MenuConfig = [
   { heading: 'Store Analytics' },
   {
     title: 'Inventory',
-    icon: Settings,
+    icon: Boxes,
     children: [
       {
         title: 'All Stock',
         path: '/store-inventory/all-stock',
       }, 
+      {
+        title: 'Current Stock',
+        path: '/store-inventory/current-stock',
+      }, 
+      {
+        title: 'Inbound Stock',
+        path: '/store-inventory/inbound-stock',
+      }, 
+      {
+        title: 'Outbound Stock',
+        path: '/store-inventory/outbound-stock',
+      }, 
+      {
+        title: 'Stock Planner',
+        path: '/store-inventory/stock-planner',
+      }, 
+       {
+        title: 'Per Product Stock',
+        path: '/store-inventory/per-product-stock',
+      },
+      {
+        title: 'Track Shipping',
+        path: '/store-inventory/track-shipping',
+      },
+      {
+        title: 'Create Shipping Label',
+        path: '/store-inventory/create-shipping-label',
+      },
     ],
   },
   {
     title: 'Products',
-    icon: Settings,
+    icon: Package,
     children: [
       {
         title: 'Product List',

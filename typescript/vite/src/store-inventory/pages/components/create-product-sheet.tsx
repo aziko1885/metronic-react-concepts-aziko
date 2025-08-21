@@ -10,7 +10,8 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
-import { ClipboardPenLine, DollarSign, Plus, Settings } from 'lucide-react'; 
+import { ClipboardPenLine, CloudUpload, DollarSign, Plus, Settings, Image, CircleX } from 'lucide-react'; 
+import { Badge } from '@/components/ui/badge';
 import {
   Table,
   TableBody, 
@@ -27,7 +28,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input, InputWrapper } from '@/components/ui/input'; 
 import { Textarea } from '@/components/ui/textarea';
 import { toAbsoluteUrl } from '@/lib/helpers';
- 
+import React from 'react';
 
 export function CreateProductSheet({
   open,
@@ -126,6 +127,12 @@ const subscriptions2 = [
     onHand: '12' 
   },
 ];
+
+const [progress, setProgress] = React.useState(13);
+React.useEffect(() => {
+  const timer = setTimeout(() => setProgress(40), 500);
+  return () => clearTimeout(timer);
+}, []);
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -452,14 +459,14 @@ const subscriptions2 = [
 
                     <CardContent className='p-0 -mt-2.5'> 
                       <TabsContent value="5">
-                        <Table className='overflow-x-auto'>
+                        <Table className='scroll-x-auto'>
                           <TableHeader>
                             <TableRow className="text-gray-700 font-normal text-2sm">
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Size</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Color</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Price</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Available</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">On Hand</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Size</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Color</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Price</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Available</TableHead>
+                              <TableHead className="min-w-[90px] w-[100px] h-8.5 border-e border-border">On Hand</TableHead>
                               <TableHead className="w-[50px] h-8.5"></TableHead>
                             </TableRow>
                           </TableHeader>
@@ -487,14 +494,14 @@ const subscriptions2 = [
                       </TabsContent>
 
                       <TabsContent value="6">
-                      <Table className='overflow-x-auto'>
+                        <Table className='overflow-x-auto'>
                           <TableHeader>
                             <TableRow className="text-gray-700 font-normal text-2sm">
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Size</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Color</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Price</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">Available</TableHead>
-                              <TableHead className="w-[100px] h-8.5 border-e border-border">On Hand</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Size</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Color</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Price</TableHead>
+                              <TableHead className="min-w-[80px] w-[100px] h-8.5 border-e border-border">Available</TableHead>
+                              <TableHead className="min-w-[90px] w-[100px] h-8.5 border-e border-border">On Hand</TableHead>
                               <TableHead className="w-[50px] h-8.5"></TableHead>
                             </TableRow>
                           </TableHeader>
@@ -528,7 +535,7 @@ const subscriptions2 = [
               <Separator className='h-full min-h-[calc(155dvh)] hidden lg:block mx-5' orientation="vertical"></Separator>
               <Separator className='w-full block lg:hidden my-5'></Separator>
 
-              <div className='w-full lg:w-[420px] lg:mt-5 mb-5'>
+              <div className='w-full lg:w-[420px] lg:mt-5 mb-5 space-y-5'>
                 <div className='grid grid-flow-col grid-rows-2 gap-2.5'>
                   {[4, 2, 4, 2].map((imgNum, index) => (
                     <Card key={index} className="flex items-center justify-center rounded-md bg-accent/50 shadow-none shrink-0">
@@ -540,7 +547,57 @@ const subscriptions2 = [
                     </Card>
                   ))}
                 </div>
-              </div> 
+
+                <Card className='border-dashed shadow-none rounded-md'>
+                  <CardContent className='text-center'>
+                    <div className='flex items-center justify-center size-[32px] rounded-full border border-border mx-auto mb-3'>
+                      <CloudUpload  className='size-4'/>
+                    </div>
+                    <h3 className='text-2sm text-gray-900 font-semibold mb-0.5'>Choose a file or drag & drop here.</h3>
+                    <span className='text-xs text-gray-700 font-normal block mb-3'>JPEG, PNG, up to 2 MB.</span>
+                    <Button size="sm" variant="mono">Browse File</Button>
+                  </CardContent>
+                </Card>
+
+                <Card className='shadow-none rounded-md'>
+                  <CardContent className='flex items-center gap-2 p-3'>
+                    <div className='flex items-center justify-center size-[32px] rounded-md border border-border shrink-0'>
+                      <Image className='size-4 text-gray-500'/>
+                    </div>
+                    <div className='flex flex-col gap-1.5 w-full'>
+                      <div className='flex items-center justify-between gap-2.5 w-full'>
+                        <div className='flex items-center gap-2.5 -mt-2'>
+                          <span className='text-xs text-gray-900 font-medium leading-0'>nike_jordans_2344.PNG</span>
+                          <span className='text-2sm text-gray-700 font-normal leading-0'>49 kb</span>
+                        </div>
+                        <CircleX className='size-3.5 text-gray-400'/>
+                      </div>
+                      
+                      <div className="relative h-1 w-full bg-gray-300 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gray-900 rounded-full"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Separator className='w-full'></Separator>
+
+                <div className="flex flex-col gap-2.5 mb-2.5">
+                  <Label className="text-xs leading-3">Tag</Label>
+                  <Input placeholder="Add tags" /> 
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Badge variant="secondary" appearance="light">
+                    Jordans <CircleX className='size-3.5 text-gray-600'/>
+                  </Badge>   
+                  <Badge variant="secondary" appearance="light">
+                    Limited Edition <CircleX className='size-3.5 text-gray-600'/>
+                  </Badge>   
+                </div>
+              </div>  
             </div> 
           </ScrollArea>
         </SheetBody>

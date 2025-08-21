@@ -36,7 +36,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Checkbox } from '@/components/ui/checkbox'; 
 import { TrackShippingSheet } from '../components/track-shipping-sheet';
-import { CreateShippingLabel } from '../components/create-shipping-label-sheet';
+import { CreateShippingLabelSheet } from '../components/create-shipping-label-sheet';
 
 interface IColumnFilterProps<TData, TValue> {
   column: Column<TData, TValue>;
@@ -791,7 +791,7 @@ export function OutboundStockTable({ mockData: propsMockData }: OutboundStockPro
         onOpenChange={onTrackShippingSheetOpenChange} 
         data={modalData || mockData[0]}
       />
-      <CreateShippingLabel 
+      <CreateShippingLabelSheet 
         open={createShippingSheetOpen}  
         onOpenChange={onCreateShippingSheetOpenChange} 
         data={createModalData || (mockData.length > 0 ? mockData[0] : undefined)}

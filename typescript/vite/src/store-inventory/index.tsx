@@ -1,5 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 
 import { DefaultLayout } from './layout';
 import { Dashboard } from './pages/dashboard/page';
@@ -10,7 +9,10 @@ import { OutboundStock } from './pages/outbound-stock/page';
 import { StockPlanner } from './pages/stock-planner/page';
 import ProductList from './pages/product-list/page';
 import { ProductDetailsPage } from './pages/product-details';
-import { CreateProductPage } from './pages/create-product';
+import { CreateProductPage } from './pages/create-product'; 
+import { PerProductStockPage } from './pages/per-product-stock';
+import { TrackShippingPage } from './pages/track-shipping';
+import { CreateShippingLabelPage } from './pages/create-shipping-label';
 
 export default function StoreInventoryModule() {
   return (
@@ -26,7 +28,10 @@ export default function StoreInventoryModule() {
         <Route path="stock-planner" element={<StockPlanner />} />
         <Route path="product-list" element={<ProductList />} />
         <Route path="product-details" element={<ProductDetailsPage />} />
-        <Route path="create-product" element={<CreateProductPage />} />
+        <Route path="create-product" element={<CreateProductPage />} /> 
+        <Route path="per-product-stock" element={<PerProductStockPage />} /> 
+        <Route path="track-shipping" element={<TrackShippingPage />} /> 
+        <Route path="create-shipping-label" element={<CreateShippingLabelPage />} /> 
       </Route>
     </Routes>
   );

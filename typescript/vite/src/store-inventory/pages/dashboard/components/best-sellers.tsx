@@ -60,7 +60,7 @@ export function BestSeller({}: BestSellerProps) {
               />
             </Card>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5 mb-1">
               <Link
                 to="#"
                 className="hover:text-primary text-sm font-medium text-mono leading-5.5"
