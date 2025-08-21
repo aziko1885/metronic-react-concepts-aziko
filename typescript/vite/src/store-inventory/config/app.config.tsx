@@ -64,6 +64,10 @@ export const MENU_SIDEBAR: MenuConfig = [
       { title: 'Create Product', 
         path: '/store-inventory/create-product' 
       },
+      {
+        title: 'Manage Variants',
+        path: '/store-inventory/manage-variants',
+      },
     ],
   }
 ];

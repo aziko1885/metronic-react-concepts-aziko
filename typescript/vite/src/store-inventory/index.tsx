@@ -13,6 +13,7 @@ import { CreateProductPage } from './pages/create-product';
 import { PerProductStockPage } from './pages/per-product-stock';
 import { TrackShippingPage } from './pages/track-shipping';
 import { CreateShippingLabelPage } from './pages/create-shipping-label';
+import { ManageVariantsPage } from './pages/manage-variants';
 
 export default function StoreInventoryModule() {
   return (
@@ -32,6 +33,7 @@ export default function StoreInventoryModule() {
         <Route path="per-product-stock" element={<PerProductStockPage />} /> 
         <Route path="track-shipping" element={<TrackShippingPage />} /> 
         <Route path="create-shipping-label" element={<CreateShippingLabelPage />} /> 
+        <Route path="manage-variants" element={<ManageVariantsPage />} /> 
       </Route>
     </Routes>
   );
